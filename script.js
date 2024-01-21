@@ -156,12 +156,40 @@ function valid_clNo()
         return false          
       }
     } 
+    function valid_pass() {
+      // Get the password input value
+      var pass = document.getElementById('pass1').value;
 
+      // Define a regular expression for password validation
+      var passwordRegex = /^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*\d).{4,}$/;
+
+      // Test if the input matches the pattern
+      if (passwordRegex.test(pass)) {
+         // alert('Valid password.');
+         return true
+      } else {
+          alert('Password must contain at least one special character and one numeric digit. Minimum length is 4 characters.');
+          return false;
+      }
+  }
+  function valid_repass(){
+    var pass1=document.getElementById('pass1').value;
+    var pass2=document.getElementById('pass2').value;
+    if(reacc==acc1)
+    {
+      return true
+    }
+    else
+    {
+      alert('Password Mismatch');
+      return false          
+    }
+  } 
 
      function valid_form()
     {
         console.log("form validation")
-       if(valid_clNo()=== true && valid_fname()===true && valid_lname()===true && valida_phNo()===true && valid_reph()=== true && valid_Email()===true && valid_brname()==true && valid_IFS()==true &&valid_acc()==true && valid_reacc()==true) 
+       if(valid_clNo()=== true && valid_fname()===true && valid_lname()===true && valida_phNo()===true && valid_reph()=== true && valid_Email()===true && valid_brname()==true && valid_IFS()==true &&valid_acc()==true && valid_reacc()==true && valid_pass()==true && valid_repass()==true) 
       {
         alert("Signup Successfully completed Please SignIn");
        return true;
@@ -172,12 +200,48 @@ function valid_clNo()
        }
     }
 
+
+
+//signin validation
+    function clNo_signin()
+    {
+        console.log("clock number validation")
+      var clNo = document.getElementById('clNo_signin').value;
+      console.log(clNo)
+        var clno_err=document.getElementById('err_clno')
+      // Check if the input is not null and has a length up to 6 digits
+      if (clNo !== null && clNo.length > 0 && clNo.length < 6 && /^\d+$/.test(clNo)) {
+          alert('Clock Number should be 6 digit.');
+          return false; // Allow form submission
+      } else {
+    
+         return true; // Prevent form submission
+      }
+    }
+
+    function valid_passIn() {
+      // Get the password input value
+      var pass = document.getElementById('pass_signin').value;
+
+      // Define a regular expression for password validation
+      var passwordRegex = /^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*\d).{4,}$/;
+
+      // Test if the input matches the pattern
+      if (passwordRegex.test(pass)) {
+         // alert('Valid password.');
+         return true
+      } else {
+          alert('Password must contain at least one special character and one numeric digit. Minimum length is 4 characters.');
+          return false;
+      }
+  }
+
     function valid_siginform()
     {
-      if(valid_clNo()=== true)
+      if(clNo_signin()==true && valid_passIn()==true)
       {
         alert("Sign In Successfully");
         return true;
       }
-      else return false;
+      else return false
     }
